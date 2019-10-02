@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using dotnetThree.Models;
 
 namespace dotnetThree.Data
 {
@@ -12,5 +13,6 @@ namespace dotnetThree.Data
             : base(options)
         {
         }
+        public DbSet<dotnetThree.Models.Article> Article { get; set; }
     }
 }
