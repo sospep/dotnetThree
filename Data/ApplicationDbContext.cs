@@ -14,5 +14,6 @@ namespace dotnetThree.Data
         {
         }
         public DbSet<dotnetThree.Models.Article> Article { get; set; }
+        public DbSet<dotnetThree.Models.Comment> Comment { get; set; }
     }
 }
