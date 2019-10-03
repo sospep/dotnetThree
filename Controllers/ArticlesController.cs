@@ -33,17 +33,6 @@ namespace dotnetThree.Controllers
                 return NotFound();
             }
 
-            /* orig generated source
-            var article = await _context.Article
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (article == null)
-            {
-                return NotFound();
-            }
-
-            return View(article);
-            */
-
             var twoModels = new ArticleComment();
             if (id == null)
             {
