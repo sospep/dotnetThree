@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Authentication
+
 @model dotnetThree.Models.ArticleComment
 
 @{
@@ -37,8 +39,21 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Article.Id">Edit</a> |
+    @if(@User.Identity.IsAuthenticated)
+    {
+    <a asp-action="Edit" asp-route-id="@Model.Article.Id">Edit</a> <span>|</span>
+    }
     <a asp-action="Index">Back to List</a>
 </div>
-<partial name="_AddComment" />
+
+@if(@User.Identity.IsAuthenticated)
+{
+    <partial name="_AddComment" />
+} 
+else
+{
+    <a asp-area="Identity" asp-page="/Account/Login"  class="btn btn-primary" >Login</a> <span>To add your own comments to this article</span>
+}
+
 <partial name="_viewComments" />
+
