@@ -25,7 +25,16 @@ namespace dotnetThree.Controllers
         public IActionResult About()
         {
             // example - setting variable to pass into the view using the ViewData dictionary object
-            ViewData["h2"] ="dotnetThree - Blog Application - Features";
+            ViewData["appName"] ="dotnetThree - duh Blog";
+            // TEST = embed html in variable, r= FAIL
+            // ViewData["appDescription"] ="dotnetThree is an application used to create blog Articles Check out the <a href=\"\\Pages\\LearnMore\">Learn More</a> page to read about some of its cool features."; 
+            ViewData["appDescription"] ="The dotnetThree application is used to create blog Articles Check out the \"Learn More\" page to read about some of the cool features it has."; 
+            ViewData["appVersion"] ="beta - 0.004";
+            return View();             
+        }
+         public IActionResult LearnMore()
+        {
+            //ViewData["h2"] ="dotnetThree - Blog Application - Features";
             return View();             
         }
     }
