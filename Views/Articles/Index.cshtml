@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Authentication
+
 @model IEnumerable<dotnetThree.Models.Article>
 
 @{
@@ -6,9 +8,17 @@
 
 <h1>Index</h1>
 
+@if(@User.Identity.IsAuthenticated)
+{
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+}
+else
+{
+    <a asp-area="Identity" asp-page="/Account/Login"  class="btn btn-primary" >Login</a> <span>To add your article to this collection</span>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -43,9 +53,12 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                @if(@User.Identity.IsAuthenticated)
+                {
+                    <span>|</span><a asp-action="Edit" asp-route-id="@item.Id"> Edit</a> 
+                    <span>|</span><a asp-action="Delete" asp-route-id="@item.Id"> Delete </a>
+                }
             </td>
         </tr>
 }
