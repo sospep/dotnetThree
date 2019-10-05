@@ -32,11 +32,14 @@
 
 description 
 ------------
-dotnet 3 is a simple blogging application. It has some cool features like a a user authentication system. 
+dotnetThrees is a simple blogging application. It enables users to create blog articles and to create comments on those articles.
+It has some cool features like an authentication system for managing users and the capabilities that they have within the application.
 
 objectives 
 ------------
-Its purpose is to serve as a quick start temlate when creating new dotnet core v 3 projects that may require similar functionality. 
+Use the latest version of dotnet core (v3) to build a basic application and see what kind of trouble I can get myself into. 
+Use the completed basic application to serve as a quick start temlate when creating new dotnet core v3 projects that may require similar functionality. 
+It could also serve as a lightweight simple to manage blog application.
 
 demo
 ------------
@@ -55,16 +58,17 @@ application version
 -------------
 current - beta 0.0.004  
 
-System dependencies
+application dependencies
 -------------------
 * [] packages - ] codeGeneration, ] entity framework, ] entity framework core sqlite,] entity framework core sqlserver, ] entity framework tools,  ] entity framework design, ] entity framework identity ] asp.net core diagnostics ] asp.net identity, ] microsoft extensions logging 
 
 Configuration / Setup
 -------------
+* [windows] 
 * [] use git clone https://github.com/sospep/dotnetThree.git to clone the application to your local machine
 * [] open a terminal window in the directory you downloaded the application
 * [] use > dotnet run to
-* []  
+* [] use localhost:5000 in your browser's address bar to access the running application
 
 Database Creation
 -----------------
