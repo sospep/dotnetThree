@@ -6,54 +6,79 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<svg class="bd-placeholder-img bd-placeholder-img-lg img-fluid" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Responsive image">
+    <title>Placeholder</title>
+    <rect width="100%" height="100%" fill="#868e96">
+    </rect>
+    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+        article image
+    </text>
+</svg>
 
-<div>
-    <h4>Article</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Article.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Article.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Article.CreatedAt)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Article.CreatedAt)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Article.Content)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Article.Content)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Article.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Article.Price)
-        </dd>
-    </dl>
+<div class="container">
+  <div class="row">
+    <!-- col 1/3 to contain author profile -->
+    <div class="col-sm">
+        <!-- TRY = bootstrap placeholder img, r=FAIL, 
+        <figure class="figure">
+            <img src="/400x300" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">   
+        </figure>
+        -->
+
+        <svg class="bd-placeholder-img img-fluid mt-1" width="100%" height="150px" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Responsive image">
+            <title>Placeholder</title>
+            <rect width="90%" height="100%" fill="#868e96">
+            </rect>
+            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">
+            author photo
+            </text>
+        </svg>
+
+
+        <h4> author name </h4>
+        <p> author profile description goes here</p>
+    </div>
+
+    <!-- 2/3 to contain article content, beginning with article image -->
+    <div class="col-sm">
+        
+        <h1> @Html.DisplayFor(model => model.Article.Title) </h1>
+        
+        <dl class="row">    
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.Article.CreatedAt)
+            </dd>
+               <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.Article.Price)
+            </dd>
+            <dd class = "col-sm-12">
+                @Html.DisplayFor(model => model.Article.Content)
+            </dd>
+         </dl>
+        
+        <!-- if user auth, display EDIT article links -->
+        @if(@User.Identity.IsAuthenticated)
+        {
+        <a asp-action="Edit" asp-route-id="@Model.Article.Id">Edit</a> <span>|</span>
+        }
+        <a asp-action="Index">Back to List</a>
+
+        <!-- if user auth, display post comment form -->
+        @if(@User.Identity.IsAuthenticated)
+        {
+            <partial name="_AddComment" />
+        } 
+        else
+        {
+            <a asp-area="Identity" asp-page="/Account/Login"  class="btn btn-primary" >Login</a> <span>To add your own comments to this article</span>
+        }
+        <!-- display comments for this article -->
+        <partial name="_viewComments" />
+    </div>
+
+    <!-- 3/3 to contain article content, beginning with article image -->
+    <div class="col-sm">
+        <p> ??? </p>        
+    </div>
+  </div> <!-- end row layout -->
 </div>
-<div>
-    @if(@User.Identity.IsAuthenticated)
-    {
-    <a asp-action="Edit" asp-route-id="@Model.Article.Id">Edit</a> <span>|</span>
-    }
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@if(@User.Identity.IsAuthenticated)
-{
-    <partial name="_AddComment" />
-} 
-else
-{
-    <a asp-area="Identity" asp-page="/Account/Login"  class="btn btn-primary" >Login</a> <span>To add your own comments to this article</span>
-}
-
-<partial name="_viewComments" />
-
