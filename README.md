@@ -32,18 +32,18 @@
 
 description 
 ------------
-dotnetThrees is a simple blogging application. It enables users to create blog articles and to create comments on those articles.
+dotnetThree -> dugh blog is a simple blogging application. It enables users to create blog articles and to create comments on those articles.
 It has some cool features like an authentication system for managing users and the capabilities that they have within the application.
 
 objectives 
 ------------
-Use the latest version of dotnet core (v3) to build a basic application and see what kind of trouble I can get myself into. 
-Use the completed basic application to serve as a quick start temlate when creating new dotnet core v3 projects that may require similar functionality. 
-It could also serve as a lightweight simple to manage blog application.
+* Use the latest version of dotnet core (v3) to build a basic application and see what kind of trouble I can get myself into. 
+* Use the completed basic application to serve as a quick start temlate when creating new dotnet core v3 projects that may require similar functionality. 
+* It could also serve as a lightweight simple application to manage a blog.
 
 demo
 ------------
-The current version of this application is online at [blog.sospep.com](http://blog.sospep.org) for demonstration purposes. 
+The current version of this application is online at [blog.sospep.org](http://blog.sospep.org) for demonstration purposes. 
 
 This application was developed using ...
 
@@ -56,7 +56,7 @@ asp.net version
 * 
 application version 
 -------------
-current - beta 0.0.004  
+current: 0.8.0-alpha 
 
 application dependencies
 -------------------
@@ -64,15 +64,16 @@ application dependencies
 
 Configuration / Setup
 -------------
-* [windows] 
-* [] use git clone https://github.com/sospep/dotnetThree.git to clone the application to your local machine
-* [] open a terminal window in the directory you downloaded the application
-* [] use > dotnet run to
-* [] use localhost:5000 in your browser's address bar to access the running application
+[on windows || mac || linux ] 
+1. [] use ">git clone https://github.com/sospep/dotnetThree.git" - to clone this application to your local machine
+2. [] open a terminal window in the directory that you downloaded the application to, then ... 
+3. [] use ">dotnet run" - to start the application on your local machine
+4. [] use "http://localhost:5000" - in your browser's address bar to access the running application
 
 Database Creation
 -----------------
-* [] add instructions to ...
+* [] The application includes an sqlite3 database implementation that is ready to use
+* [] coming-soon - ARTICLE - how-to use this application with a RDBMS like ] mysql, ] sqlserver, ] postgres 
 
 Database initialization
 -----------------------
@@ -84,8 +85,10 @@ How to run the test suite
 
 Services (job queues, cache servers, search engines, etc.)
 ----------------------------------------------------------
-* [] add instructions 
+* [] add instructions to ...
 
 Deployment instructions
 ------------
-* [] dotnet publish 
+* [] use ">dotnet publish" - to generate new application binaries after you have implemented any code changes
+* [] coming-soon - ARTICLE - deploying your dotnet core 3.x application to shared windows hosting service. 
+* [] coming-soon - ARTICLE - deploying your dotnet core 3.x application your digital ocean droplet. 
