@@ -29,12 +29,16 @@ namespace dotnetThree.Controllers
             // TEST = embed html in variable, r= FAIL
             // ViewData["appDescription"] ="dotnetThree is an application used to create blog Articles Check out the <a href=\"\\Pages\\LearnMore\">Learn More</a> page to read about some of its cool features."; 
             ViewData["appDescription"] ="The dotnetThree application is used to create blog Articles Check out the \"Learn More\" page to read about some of the cool features it has."; 
-            ViewData["appVersion"] ="beta - 0.004";
+            ViewData["appVersion"] ="0.8.0-alpha";
             return View();             
         }
          public IActionResult LearnMore()
         {
             //ViewData["h2"] ="dotnetThree - Blog Application - Features";
+            return View();             
+        }
+         public IActionResult ChangeLog()
+        {
             return View();             
         }
     }
