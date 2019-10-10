@@ -93,3 +93,9 @@ body {
   min-width: 100%;
   height: 32rem;
 }
+
+/* PAGE = Articles / Index
+-------------------------------------------------- */
+.center{
+  text-align: center
+}
