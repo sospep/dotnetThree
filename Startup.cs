@@ -12,6 +12,9 @@ using dotnetThree.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+// email pw recovery 
+using Microsoft.AspNetCore.Identity.UI.Services;
+using WebPWrecover.Services;
 
 namespace dotnetThree
 {
@@ -33,6 +36,14 @@ namespace dotnetThree
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+
+            // requires
+            // using Microsoft.AspNetCore.Identity.UI.Services;
+            // using WebPWrecover.Services;
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
+
+
            services.AddRazorPages();
         }
 
