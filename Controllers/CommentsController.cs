@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using dotnetThree.Data;
 using dotnetThree.Models;
+using MimeKit;
+using MailKit.Net.Smtp;
 
 namespace dotnetThree.Controllers
 {
@@ -63,9 +65,11 @@ namespace dotnetThree.Controllers
             {
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
+                // TESTed email send example code here, result = PASS
                 // return RedirectToAction(nameof(Index));
                 return RedirectToAction("Details", new { controller="Articles", id = comment.Article_Id });
             }
+
             return View(comment);
         }
 
