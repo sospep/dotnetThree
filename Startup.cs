@@ -15,6 +15,8 @@ using Microsoft.Extensions.Hosting;
 // email pw recovery 
 using Microsoft.AspNetCore.Identity.UI.Services;
 using WebPWrecover.Services;
+// 
+using dotnetThree.Models.AccountViewModels;
 
 namespace dotnetThree
 {
@@ -33,8 +35,18 @@ namespace dotnetThree
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
+            /* 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            */
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
+            
+            
+            services.AddMvc();
+
             services.AddControllersWithViews();
 
             // requires
