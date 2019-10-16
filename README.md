@@ -32,14 +32,14 @@
 
 description 
 ------------
-dotnetThree -> dugh blog is a simple blogging application. It enables users to create blog articles and to create comments on those articles.
-It has some cool features like an authentication system for managing users and the capabilities that they have within the application.
+dotnetThree -> duh blog is a simple blogging application. It enables users to create blog articles and to create comments on those articles.
+It has some very cool features like a full blown authentication system for managing users and the capabilities that they have within the application.
 
 objectives 
 ------------
-* Use the latest version of dotnet core (v3) to build a basic application and see what kind of trouble I can get myself into. 
-* Use the completed basic application to serve as a quick start temlate when creating new dotnet core v3 projects that may require similar functionality. 
-* It could also serve as a lightweight simple application to manage a blog.
+* Use the latest version of dotnet core (v3) to build a basic application and see what kind of challenges that I will face. 
+* Use the completed basic application to serve as a quick start template when creating new dotnet core v3 projects that may require similar functionality. 
+* It could also be used as a lightweight simple application to manage a blog &#128512;!
 
 demo
 ------------
@@ -51,16 +51,13 @@ dotnet core version
 ------------
 * v 3.0.100
 
-asp.net version 
--------------
-* 
 application version 
 -------------
-current: 0.8.0-alpha 
+current: 0.12.0-alpha 
 
 application dependencies
 -------------------
-* [] packages - ] codeGeneration, ] entity framework, ] entity framework core sqlite,] entity framework core sqlserver, ] entity framework tools,  ] entity framework design, ] entity framework identity ] asp.net core diagnostics ] asp.net identity, ] microsoft extensions logging 
+* [] packages - ] codeGeneration, ] entity framework, ] entity framework core sqlite,] entity framework core sqlserver, ] entity framework tools,  ] entity framework design, ] entity framework identity ] asp.net core diagnostics ] asp.net identity, ] microsoft extensions logging ] mailKit, ] mimeKit
 
 Configuration / Setup
 -------------
@@ -69,6 +66,9 @@ Configuration / Setup
 2. [] open a terminal window in the directory that you downloaded the application to, then ... 
 3. [] use ">dotnet run" - to start the application on your local machine
 4. [] use "http://localhost:5000" - in your browser's address bar to access the running application
+5. [] use ">dotnet user-secrets mailServer {your-smtp-serverName} to set the mail server name for outgoing email
+6. [] use ">dotnet user-secrets SMTPUser {your-smtp-server-username} to specify the email user account to use
+7. [] use ">dotnet user-secrets SMTPKey {your-smtp-server-password} to set the password for the specified email account
 
 Database Creation
 -----------------
