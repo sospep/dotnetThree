@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using WebPWrecover.Services;
 // 
 using dotnetThree.Models.AccountViewModels;
+using dotnetThree.Models.ManageViewModels;
+
 
 namespace dotnetThree
 {

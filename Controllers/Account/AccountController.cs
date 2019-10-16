@@ -49,7 +49,7 @@ namespace dotnetThree.Controllers
             return View();
         }
 
-        /* 
+        
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -72,7 +72,7 @@ namespace dotnetThree.Controllers
                 {
                     return RedirectToAction(nameof(SendCode), new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 }
-            *        /
+                */
                 if (result.IsLockedOut)
                 {
                     _logger.LogWarning(2, "User account locked out.");
@@ -88,7 +88,7 @@ namespace dotnetThree.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-        */
+        
         //
         // GET: /Account/Register
         [HttpGet]
@@ -154,7 +154,7 @@ namespace dotnetThree.Controllers
             return Challenge(properties, provider);
         }
 
-        /* 
+        
         // GET: /Account/ExternalLoginCallback
         [HttpGet]
         [AllowAnonymous]
@@ -181,10 +181,12 @@ namespace dotnetThree.Controllers
                 _logger.LogInformation(5, "User logged in with {Name} provider.", info.LoginProvider);
                 return RedirectToLocal(returnUrl);
             }
+            /* 
             if (result.RequiresTwoFactor)
             {
                 return RedirectToAction(nameof(SendCode), new { ReturnUrl = returnUrl });
             }
+            */
             if (result.IsLockedOut)
             {
                 return View("Lockout");
@@ -198,9 +200,9 @@ namespace dotnetThree.Controllers
                 return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = email });
             }
         }
-        */
+        
 
-        /* 
+        
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
         [AllowAnonymous]
@@ -237,7 +239,7 @@ namespace dotnetThree.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             return View(model);
         }
-        */
+        
 
         // GET: /Account/ConfirmEmail
         [HttpGet]
@@ -266,7 +268,6 @@ namespace dotnetThree.Controllers
             return View();
         }
 
-        /* 
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
@@ -284,17 +285,17 @@ namespace dotnetThree.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                 // Send an email with this link
-                //var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                //var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
-                //await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                //   "Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
-                //return View("ForgotPasswordConfirmation");
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                await _emailSender.SendEmailAsync(model.Email, "Reset Password",
+                   "Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
+                return View("ForgotPasswordConfirmation");
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-        */
+        
 
         //
         // GET: /Account/ForgotPasswordConfirmation
@@ -314,7 +315,7 @@ namespace dotnetThree.Controllers
             return code == null ? View("Error") : View();
         }
 
-        /* 
+        
         // POST: /Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
@@ -339,7 +340,7 @@ namespace dotnetThree.Controllers
             AddErrors(result);
             return View();
         }
-        */
+        
 
         //
         // GET: /Account/ResetPasswordConfirmation
