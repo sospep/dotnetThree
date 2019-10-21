@@ -7,21 +7,34 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using dotnetThree.Data;
 using dotnetThree.Models;
+using Microsoft.AspNetCore.Identity;
+using dotnetThree.Models.AccountViewModels;
 
 namespace dotnetThree.Controllers
 {
     public class ArticlesController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public ArticlesController(ApplicationDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+         
+        public ArticlesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Articles
         public async Task<IActionResult> Index()
         {
+            if(User.Identity.Name != null)
+            {
+                ApplicationUser currentUser = await _userManager.FindByEmailAsync(User.Identity.Name);
+                ViewData["currentUserId"] = currentUser.Id;
+            }
+            else
+            {
+                ViewData["currentUserId"] = "Unregistered";
+            }
             return View(await _context.Article.ToListAsync());
         }
 
@@ -70,7 +83,9 @@ namespace dotnetThree.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Content,Price")] Article article)
         {
+            ApplicationUser currentUser = await _userManager.FindByEmailAsync(User.Identity.Name);
             article.CreatedAt = DateTime.Now;
+            article.Author = currentUser.Id;
             
             if (ModelState.IsValid)
             {
