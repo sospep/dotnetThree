@@ -41,23 +41,27 @@ namespace dotnetThree.Controllers
         // GET: Articles/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            // ApplicationUser currentUser = await _userManager.FindByEmailAsync(User.Identity.Name);
+
+            // test id is valid 
             if (id == null)
             {
                 return NotFound();
             }
-
+            // new viewModel instance
             var twoModels = new ArticleComment();
             if (id == null)
             {
                 return NotFound();
             }
-
+            // article 
             twoModels.Article = await _context.Article
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (twoModels.Article == null)
             {
                 return NotFound();
             }
+            // comments 
              var comments = await _context.Comment
                 .Where(m => m.Article_Id == id)
                 .ToListAsync();
@@ -67,6 +71,16 @@ namespace dotnetThree.Controllers
                 return NotFound();
             }
             twoModels.comments = (List<Comment>)comments;
+            
+            // current user 
+            if (User.Identity.Name != null)
+            {
+                twoModels.currentUser = await _userManager.FindByEmailAsync(User.Identity.Name);
+            }
+            else {
+                twoModels.currentUser = null;
+            }
+
             return View(twoModels);
         }
 

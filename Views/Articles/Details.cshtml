@@ -70,7 +70,7 @@
         } 
         else
         {
-            <a asp-area="Identity" asp-page="/Account/Login"  class="btn btn-primary" >Login</a> <span>To add your own comments to this article</span>
+            <a asp-controller="Account" asp-action="Login" class="btn btn-primary" >Login</a> <span>To add your own comments to this article</span>
         }
         <!-- display comments for this article -->
         <partial name="_viewComments" />
