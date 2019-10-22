@@ -1,6 +1,6 @@
 <!-- 
     [description]
-        partial view that renders a list of comments for the selected article 
+        [*] a partial view that renders a list of comments for the selected article, used on view Article Details 
     [todo]
         [x] add link to delete comment
 -->
@@ -10,10 +10,9 @@
     @foreach (var item in Model.comments) {
         <strong>@item.Title</strong><br>
         <p>@item.Content</p>
-        // display commentManager bar if ] user is logged in, Manger includes options to ] delete, ] edit 
-         @if (@User.Identity.IsAuthenticated){
+        // display commentManager bar if ] user is logged in && user created comment, [x] Manager includes options to ] delete, ] edit  comments
+         @if (Model.currentUser != null && Model.currentUser.Id == item.Author){
             <a asp-controller="Comments" asp-action="Delete" asp-route-id=@item.Id> Delete</a>
-
             <a asp-controller="Comments" asp-action="Edit" asp-route-id=@item.Id> Edit</a><br>
          }
     }

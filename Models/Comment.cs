@@ -23,5 +23,7 @@ namespace dotnetThree.Models
         [Required]
         [Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public int Article_Id{get; set;}
+        public string Author {get; set;}
+        
     }
 }

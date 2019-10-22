@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using dotnetThree.Data;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 // email pw recovery 
@@ -42,11 +43,15 @@ namespace dotnetThree
         }
         */
         public IConfigurationRoot Configuration { get; set; }
+        public IWebHostEnvironment _env;
 
         public Startup(IWebHostEnvironment env)
         {
+            _env = env;
+
             var builder = new ConfigurationBuilder()
-            .SetBasePath(env.ContentRootPath)
+            .SetBasePath( _env.ContentRootPath)
+            // .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
             Configuration = builder.Build();

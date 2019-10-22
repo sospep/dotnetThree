@@ -7,18 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using dotnetThree.Data;
 using dotnetThree.Models;
-using MimeKit;
-using MailKit.Net.Smtp;
+using dotnetThree.Models.AccountViewModels;
+using Microsoft.AspNetCore.Identity;
+// using MimeKit;
+// using MailKit.Net.Smtp;
 
 namespace dotnetThree.Controllers
 {
     public class CommentsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CommentsController(ApplicationDbContext context)
+        public CommentsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager; 
         }
 
         // GET: Comments
@@ -60,6 +65,8 @@ namespace dotnetThree.Controllers
         public async Task<IActionResult> Create([Bind("Id,Title,Content,Article_Id")] Comment comment)
         {
             comment.CreatedAt = DateTime.Now;
+            var currentUser = await _userManager.FindByEmailAsync(User.Identity.Name);
+            comment.Author = currentUser.Id;
 
             if (ModelState.IsValid)
             {
