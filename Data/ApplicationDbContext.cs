@@ -8,7 +8,7 @@ using dotnetThree.Models.AccountViewModels;
 
 namespace dotnetThree.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -16,8 +16,9 @@ namespace dotnetThree.Data
         }
         public DbSet<dotnetThree.Models.Article> Article { get; set; }
         public DbSet<dotnetThree.Models.Comment> Comment { get; set; }
-
-
+        
+        // ADD- authorization-v-004 - roles
+        public DbSet<dotnetThree.Models.AccountViewModels.ApplicationRole> ApplicationRole {get;set;}
     
     }
 }

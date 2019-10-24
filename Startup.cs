@@ -80,7 +80,8 @@ namespace dotnetThree
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             */
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            // services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
             // 

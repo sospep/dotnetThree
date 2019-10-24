@@ -9,6 +9,7 @@ using dotnetThree.Data;
 using dotnetThree.Models;
 using Microsoft.AspNetCore.Identity;
 using dotnetThree.Models.AccountViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace dotnetThree.Controllers
 {
@@ -29,11 +30,14 @@ namespace dotnetThree.Controllers
             if(User.Identity.Name != null)
             {
                 ApplicationUser currentUser = await _userManager.FindByEmailAsync(User.Identity.Name);
+
                 ViewData["currentUserId"] = currentUser.Id;
+                ViewData["isAdmin"] = await _userManager.IsInRoleAsync(currentUser,"ADMIN");
             }
             else
             {
                 ViewData["currentUserId"] = "Unregistered";
+                ViewData["isAdmin"] = false;
             }
             return View(await _context.Article.ToListAsync());
         }
@@ -85,6 +89,7 @@ namespace dotnetThree.Controllers
         }
 
         // GET: Articles/Create
+        [Authorize(Roles = "MEMBER,ADMIN")]
         public IActionResult Create()
         {
             return View();
@@ -111,6 +116,7 @@ namespace dotnetThree.Controllers
         }
 
         // GET: Articles/Edit/5
+        [Authorize(Roles = "MEMBER,ADMIN")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -162,6 +168,7 @@ namespace dotnetThree.Controllers
         }
 
         // GET: Articles/Delete/5
+         [Authorize(Roles = "MEMBER,ADMIN")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
