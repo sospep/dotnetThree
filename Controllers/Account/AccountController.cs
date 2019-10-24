@@ -23,6 +23,8 @@ namespace dotnetThree.Controllers
         // private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
         // private readonly EmailSettings _emailSettings;
+        private readonly RoleManager<ApplicationRole> _roleManager;
+        
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -30,7 +32,9 @@ namespace dotnetThree.Controllers
             IEmailSender emailSender,
             // ISmsSender smsSender,
             ILoggerFactory loggerFactory,
-            IOptions<EmailSettings> emailSettings) 
+            IOptions<EmailSettings> emailSettings,
+            // adding 
+            RoleManager<ApplicationRole> roleManager) 
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -38,6 +42,8 @@ namespace dotnetThree.Controllers
             //_smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
             // _emailSettings = emailSettings.get;
+            _roleManager = roleManager;
+
         }
 
         //
@@ -117,8 +123,9 @@ namespace dotnetThree.Controllers
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
-                    
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);        
+                    // ASSIGN default role of member to user - should do on confirmation b/c ...
+                    await _userManager.AddToRoleAsync(user, "MEMBER" ); 
                     // EDIT model.Email
                     await _emailSender.SendEmailAsync(user.Email, "Confirm your account",
                        "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
