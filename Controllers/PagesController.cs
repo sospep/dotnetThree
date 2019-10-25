@@ -29,7 +29,7 @@ namespace dotnetThree.Controllers
             // TEST = embed html in variable, r= FAIL
             // ViewData["appDescription"] ="dotnetThree is an application used to create blog Articles Check out the <a href=\"\\Pages\\LearnMore\">Learn More</a> page to read about some of its cool features."; 
             ViewData["appDescription"] ="The dotnetThree application is used to create blog Articles Check out the \"Learn More\" page to read about some of the cool features it has."; 
-            ViewData["appVersion"] ="0.12.4-alpha";
+            ViewData["appVersion"] ="0.18.0-alpha";
             return View();             
         }
          public IActionResult LearnMore()
